@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
@@ -69,8 +70,7 @@ fun NewsListItem(
             .fillMaxWidth()
             .background(color = Color.Transparent)
             .padding(horizontal = 4.dp, vertical = 4.dp)
-            .semantics { selected = isSelected }
-            .clickable { navigateToDetails },
+            .semantics { selected = isSelected },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = Color.Transparent
@@ -130,11 +130,11 @@ fun NewsListItem(
                 }
 
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    IconWithText(icon = Icons.Default.ThumbUp, text = "361.4k")
+                    IconWithText(icon = Icons.Default.ThumbUp, selectedIcon = Icons.Default.ThumbUp, text = "361.4k")
 
-                    IconWithText(icon = Icons.Default.Favorite, text = "31.4k")
+                    IconWithText(icon = Icons.Default.FavoriteBorder, selectedIcon = Icons.Default.Favorite, text = "31.4k")
 
-                    IconWithText(icon = Icons.Default.DateRange, text = "")
+                    IconWithText(icon = Icons.Default.DateRange, selectedIcon = Icons.Default.DateRange, text = "")
                 }
 
             }

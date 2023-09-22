@@ -63,12 +63,12 @@ fun FeaturedRowItem(
     Box(
         modifier = modifier
             .graphicsLayer {
-                alpha =  state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
+                //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
             }
 
-            .width(widthInDp -30.dp)
-            .height(280.dp)
-            .padding(4.dp)
+            .width(widthInDp)
+            .height(300.dp - 20.dp)
+            .padding(end = 8.dp, bottom = 16.dp)
             .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
     ) {
 
@@ -80,9 +80,7 @@ fun FeaturedRowItem(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RoundedCornerShape(16.dp))
-                    .constrainAs(image) {
-
-                    },
+                    .constrainAs(image) {},
                 painter = painterResource(id = news.images),
                 contentDescription = "",
                 contentScale = ContentScale.Crop

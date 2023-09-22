@@ -2,6 +2,8 @@ package com.example.jetpackcomposeuichallenge.extensions
 
 import android.util.Log
 import androidx.compose.foundation.lazy.LazyListLayoutInfo
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 
 
 // Returns the normalized center item offset (-1,1)
@@ -14,3 +16,12 @@ fun LazyListLayoutInfo.normalizedItemPosition(key: Any): Float =
 
         }
         ?: 0F
+
+fun NavHostController.navigateSingleTopTo(route: String) =
+    this.navigate(route) {
+        popUpTo(this@navigateSingleTopTo.graph.findStartDestination().id) {
+            saveState = false
+        }
+        launchSingleTop = true
+        restoreState = true
+    }

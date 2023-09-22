@@ -20,7 +20,7 @@ import com.example.compose.faintRed
 fun FeaturedRow(
     item: String = "Featured",
     modifier: Modifier = Modifier,
-    onClickSeeAllText: () -> Unit
+    onClickSeeAllText: (String) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -41,7 +41,7 @@ fun FeaturedRow(
 
         Text(
             modifier = modifier.clickable {
-                onClickSeeAllText()
+                onClickSeeAllText(item)
             },
             text = "See all",
             style = TextStyle(

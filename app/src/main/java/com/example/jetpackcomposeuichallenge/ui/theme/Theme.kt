@@ -1,6 +1,8 @@
 package com.example.compose
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
@@ -82,10 +84,12 @@ fun JetpackComposeUIChallengeTheme(
 
     val systemUiController = rememberSystemUiController()
     if(useDarkTheme){
+        WindowInsets.statusBars
         systemUiController.setSystemBarsColor(
             color = Color.Transparent
         )
     }else{
+        WindowInsets.statusBars
         systemUiController.setSystemBarsColor(
             color = Color.White
         )
