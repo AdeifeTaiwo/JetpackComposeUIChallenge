@@ -35,40 +35,41 @@ class MainActivity : ComponentActivity() {
             JetpackComposeUIChallengeTheme {
                 // A surface container using the 'background' color from the theme
 
-                val shouldShowOnboarding = remember { mutableStateOf(true) }
+//                val shouldShowOnboarding = remember { mutableStateOf(true) }
+//
+//
+//                if (shouldShowOnboarding.value) {
+//                    OnBoardingScreen {
+//                        shouldShowOnboarding.value = it
+//                    }
+//                } else {
+
+
                 val showHomeScreen = remember { mutableStateOf(false) }
+                Surface(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(8.dp),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    LaunchedEffect(key1 = Unit, block = {
+                        delay(timeMillis = 1000)
+                        showHomeScreen.value = true
+                    })
 
-                if (shouldShowOnboarding.value) {
-                    OnBoardingScreen {
-                        shouldShowOnboarding.value = it
-                    }
-                } else {
-                    Surface(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(8.dp),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        LaunchedEffect(key1 = Unit, block = {
-                            delay(timeMillis = 1000)
-                            showHomeScreen.value = true
-                        })
-
-                        if (!showHomeScreen.value) {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                            ) {
-                                CircularProgressIndicator(color = faintRed)
-                            }
-                        } else {
-                            NewsApp()
+                    if (!showHomeScreen.value) {
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            CircularProgressIndicator(color = faintRed)
                         }
+                    } else {
+                        NewsApp()
                     }
-
-
                 }
+
             }
         }
     }

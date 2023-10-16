@@ -1,8 +1,5 @@
 package com.example.jetpackcomposeuichallenge.searchnews
 
-import android.app.Notification
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.updateTransition
@@ -19,7 +16,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.windowInsetsPadding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -46,9 +42,7 @@ import com.example.jetpackcomposeuichallenge.components.AppSearchBar
 import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
 import com.example.jetpackcomposeuichallenge.data.ChipData
 import com.example.jetpackcomposeuichallenge.data.PeopleAvailableProvider
-import com.example.jetpackcomposeuichallenge.home.NewsHomeScreen
 import com.example.jetpackcomposeuichallenge.items.ChipItem
-import com.example.jetpackcomposeuichallenge.items.NewsListItem
 import com.example.jetpackcomposeuichallenge.items.PeopleItem
 import com.example.jetpackcomposeuichallenge.notification.NotificationScreen
 import kotlinx.coroutines.launch
@@ -148,6 +142,7 @@ fun SearchNewsScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(20.dp))
         ChipItem(chips = ChipData.getAllNewsChipItem())
         Spacer(modifier = Modifier.height(16.dp))
+
         HorizontalPager(
             pageCount = TabItems.allTabItems.size,
             state = pagerState,

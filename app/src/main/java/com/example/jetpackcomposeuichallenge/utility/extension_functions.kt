@@ -1,6 +1,5 @@
-package com.example.jetpackcomposeuichallenge.extensions
+package com.example.jetpackcomposeuichallenge.utility
 
-import android.util.Log
 import androidx.compose.foundation.lazy.LazyListLayoutInfo
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -20,6 +19,15 @@ fun LazyListLayoutInfo.normalizedItemPosition(key: Any): Float =
 fun NavHostController.navigateSingleTopTo(route: String) =
     this.navigate(route) {
         popUpTo(this@navigateSingleTopTo.graph.findStartDestination().id) {
+            saveState = false
+        }
+        launchSingleTop = true
+        restoreState = true
+    }
+
+fun NavHostController.navigateSingleTopNoPopUpToHome(route: String) =
+    this.navigate(route) {
+        popUpTo(this@navigateSingleTopNoPopUpToHome.graph.findNode(route)!!.id) {
             saveState = false
         }
         launchSingleTop = true

@@ -6,7 +6,7 @@ import androidx.compose.material.icons.filled.FormatListBulleted
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
-import com.example.jetpackcomposeuichallenge.extensions.NewsRoute
+import com.example.jetpackcomposeuichallenge.utility.NewsRoute
 
 
 object BottomMenuProvider {

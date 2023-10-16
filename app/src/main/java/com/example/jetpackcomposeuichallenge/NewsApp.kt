@@ -14,8 +14,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeuichallenge.components.BottomMenu
 import com.example.jetpackcomposeuichallenge.data.BottomMenuProvider
-import com.example.jetpackcomposeuichallenge.extensions.NewsRoute
-import com.example.jetpackcomposeuichallenge.extensions.navigateSingleTopTo
+import com.example.jetpackcomposeuichallenge.utility.NewsRoute
+import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopTo
 import com.example.jetpackcomposeuichallenge.home.FeaturedNews
 import com.example.jetpackcomposeuichallenge.home.NewsHomeScreen
 import com.example.jetpackcomposeuichallenge.notification.NotificationScreen
@@ -64,7 +64,7 @@ fun MyAppNavHost(
                 name = "Taiwo",
                 modifier = modifier,
                 onClickSeeAllFeaturedNews = { navController.navigateSingleTopTo(it) },
-                onNotificationIconClicked = {navController.navigateSingleTopTo(NewsRoute.NOTIFICATION)}
+                onNotificationIconClicked = { navController.navigateSingleTopTo(NewsRoute.NOTIFICATION)}
             )
         }
 
