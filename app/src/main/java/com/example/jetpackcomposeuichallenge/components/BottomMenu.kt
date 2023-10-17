@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.compose.faintRed
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.data.BottomMenuContent
+import com.example.jetpackcomposeuichallenge.data.local.BottomMenuContent
 import com.example.jetpackcomposeuichallenge.items.BottomMenuItem
 
 

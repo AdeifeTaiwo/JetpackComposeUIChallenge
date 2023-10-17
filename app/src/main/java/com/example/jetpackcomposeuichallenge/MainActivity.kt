@@ -22,28 +22,17 @@ import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.example.compose.JetpackComposeUIChallengeTheme
 import com.example.compose.faintRed
-import com.example.jetpackcomposeuichallenge.data.BottomMenuProvider
+import com.example.jetpackcomposeuichallenge.data.local.BottomMenuProvider
 import com.example.jetpackcomposeuichallenge.home.NewsHomeScreen
-import com.example.jetpackcomposeuichallenge.onboarding.ui.OnBoardingScreen
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             JetpackComposeUIChallengeTheme {
-                // A surface container using the 'background' color from the theme
-
-//                val shouldShowOnboarding = remember { mutableStateOf(true) }
-//
-//
-//                if (shouldShowOnboarding.value) {
-//                    OnBoardingScreen {
-//                        shouldShowOnboarding.value = it
-//                    }
-//                } else {
-
 
                 val showHomeScreen = remember { mutableStateOf(false) }
                 Surface(

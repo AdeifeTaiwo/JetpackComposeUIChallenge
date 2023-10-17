@@ -13,7 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeuichallenge.components.BottomMenu
-import com.example.jetpackcomposeuichallenge.data.BottomMenuProvider
+import com.example.jetpackcomposeuichallenge.data.local.BottomMenuProvider
 import com.example.jetpackcomposeuichallenge.utility.NewsRoute
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopTo
 import com.example.jetpackcomposeuichallenge.home.FeaturedNews

@@ -28,9 +28,9 @@ import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposeuichallenge.components.AppSearchBar
 import com.example.jetpackcomposeuichallenge.components.FeaturedRow
 import com.example.jetpackcomposeuichallenge.components.LogoWithNotification
-import com.example.jetpackcomposeuichallenge.data.ChipData
-import com.example.jetpackcomposeuichallenge.data.LocalNewsDataProvider
-import com.example.jetpackcomposeuichallenge.data.News
+import com.example.jetpackcomposeuichallenge.data.local.ChipData
+import com.example.jetpackcomposeuichallenge.data.local.LocalNewsDataProvider
+import com.example.jetpackcomposeuichallenge.data.local.News
 import com.example.jetpackcomposeuichallenge.items.ChipItem
 import com.example.jetpackcomposeuichallenge.items.FeaturedRowItem
 import com.example.jetpackcomposeuichallenge.items.NewsListItem

@@ -47,16 +47,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.compose.JetpackComposeUIChallengeTheme
 import com.example.compose.faintRed
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.data.OnBoarding
-import com.example.jetpackcomposeuichallenge.data.OnBoardingDataProvider
+import com.example.jetpackcomposeuichallenge.data.local.OnBoarding
+import com.example.jetpackcomposeuichallenge.data.local.OnBoardingDataProvider
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen(navigateToChooseRolesScreen: (Boolean) -> Unit) {
+fun OnBoardingScreen(
+    navigateToChooseRolesScreen: (OnBoardingEvent) -> Unit
+) {
 
 
     val pagerState = rememberPagerState(
@@ -77,8 +80,9 @@ fun OnBoardingPager(
     item: List<OnBoarding>,
     pagerState: PagerState,
     modifier: Modifier = Modifier,
-    navigateToChooseRolesScreen: (Boolean) -> Unit
+    navigateToChooseRolesScreen: (OnBoardingEvent) -> Unit
 ) {
+    val viewModel : OnBoardingViewModel = hiltViewModel()
 
     Box(
         modifier = modifier
@@ -207,7 +211,8 @@ fun OnBoardingPager(
                     .padding(start = 32.dp, bottom = 32.dp, end = 32.dp),
                     onClick = {
                         if (pagerState.currentPage == item.size-1) {
-                            navigateToChooseRolesScreen(false)
+                            viewModel.onEvent(OnBoardingEvent.SaveAppEntry)
+                            navigateToChooseRolesScreen(OnBoardingEvent.SaveAppEntry)
                         } else {
 
                         }

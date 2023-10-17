@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -25,15 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.compose.faintRed
 import com.example.compose.transparentGrey
 import com.example.jetpackcomposeuichallenge.components.AppSearchBar
 import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
 import com.example.jetpackcomposeuichallenge.components.ContinueButtonComponent
-import com.example.jetpackcomposeuichallenge.data.CountryProvider
-import com.example.jetpackcomposeuichallenge.data.NewsTopicsProvider
+import com.example.jetpackcomposeuichallenge.data.local.NewsTopicsProvider
 import com.example.jetpackcomposeuichallenge.items.ChooseYourTopicsItem
-import com.example.jetpackcomposeuichallenge.items.CountryItem
 
 @Composable
 fun ChooseYourTopicScreen(modifier: Modifier= Modifier){

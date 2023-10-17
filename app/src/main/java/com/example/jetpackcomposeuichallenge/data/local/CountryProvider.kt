@@ -1,6 +1,5 @@
-package com.example.jetpackcomposeuichallenge.data
+package com.example.jetpackcomposeuichallenge.data.local
 
-import androidx.compose.runtime.Composable
 import com.example.jetpackcomposeuichallenge.R
 
 
@@ -91,7 +90,8 @@ object CountryProvider {
             flag = R.drawable.bg_7,
             countryCode = "AR",
             countryName = "Iran"
-        ))
+        )
+    )
 
     fun getCountryList() : List<Country> = countryList
 

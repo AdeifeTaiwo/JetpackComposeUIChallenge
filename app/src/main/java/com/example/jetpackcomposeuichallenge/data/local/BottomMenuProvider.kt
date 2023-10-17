@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeuichallenge.data
+package com.example.jetpackcomposeuichallenge.data.local
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkBorder

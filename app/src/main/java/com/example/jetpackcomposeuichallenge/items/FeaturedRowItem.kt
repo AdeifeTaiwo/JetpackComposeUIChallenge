@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.compose.faintRed
-import com.example.jetpackcomposeuichallenge.data.News
+import com.example.jetpackcomposeuichallenge.data.local.News
 
 
 @OptIn(ExperimentalComposeUiApi::class)

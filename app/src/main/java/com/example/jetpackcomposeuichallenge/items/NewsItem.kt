@@ -40,7 +40,7 @@ import androidx.compose.ui.unit.sp
 import com.example.compose.transparentGrey
 import com.example.jetpackcomposeuichallenge.components.FaintRedOutlinedRoundButton
 import com.example.jetpackcomposeuichallenge.components.OvalProfileImage
-import com.example.jetpackcomposeuichallenge.data.News
+import com.example.jetpackcomposeuichallenge.data.local.News
 import com.example.jetpackcomposeuichallenge.R
 import com.example.jetpackcomposeuichallenge.components.IconWithText
 

@@ -7,7 +7,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -38,8 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.example.compose.faintRed
 import com.example.compose.lightRed
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.data.BottomMenuContent
-import com.example.jetpackcomposeuichallenge.data.Country
+import com.example.jetpackcomposeuichallenge.data.local.Country
 
 @Composable
 fun CountryItem(

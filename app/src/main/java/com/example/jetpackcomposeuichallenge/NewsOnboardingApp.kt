@@ -22,6 +22,8 @@ import com.example.jetpackcomposeuichallenge.utility.NewsRoute
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopNoPopUpToHome
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopTo
 import com.example.jetpackcomposeuichallenge.onboarding.ui.OnBoardingScreen
+import com.example.jetpackcomposeuichallenge.onboarding.ui.OnBoardingViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 @Composable
 fun NewsOnboardingApp(modifier: Modifier = Modifier) {
@@ -53,6 +55,7 @@ fun OnboardingNavHost(
         composable(route = NewsRoute.ONBOARDING) {
 
             OnBoardingScreen() {
+
                 navController.navigateSingleTopTo(NewsRoute.DO_YOU_KNOW_SCREEN)
 
             }

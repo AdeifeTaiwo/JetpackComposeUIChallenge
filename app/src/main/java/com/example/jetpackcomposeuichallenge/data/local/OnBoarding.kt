@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeuichallenge.data
+package com.example.jetpackcomposeuichallenge.data.local
 
 data class OnBoarding(
     val image:Int,

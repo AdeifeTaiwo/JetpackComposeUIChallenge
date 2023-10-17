@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeuichallenge.data
+package com.example.jetpackcomposeuichallenge.data.local
 
 import com.example.jetpackcomposeuichallenge.R
 
@@ -25,4 +25,8 @@ object OnBoardingDataProvider {
 
     fun getOnboardingData() : List<OnBoarding> = onBoarding
 
+    data class OnBoarding(
+        val image:Int,
+        val description: String
+    )
 }

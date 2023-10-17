@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeuichallenge.data
+package com.example.jetpackcomposeuichallenge.data.local
 import com.example.jetpackcomposeuichallenge.R
 
 object LocalNewsDataProvider {

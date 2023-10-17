@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.faintRed
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.data.PeopleAvailableProvider
+import com.example.jetpackcomposeuichallenge.data.local.PeopleAvailableProvider
 
 @Composable
 fun PeopleItem(

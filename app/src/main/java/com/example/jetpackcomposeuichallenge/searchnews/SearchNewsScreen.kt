@@ -40,8 +40,8 @@ import com.example.compose.faintRed
 import com.example.jetpackcomposeuichallenge.EmptyComingSoon
 import com.example.jetpackcomposeuichallenge.components.AppSearchBar
 import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
-import com.example.jetpackcomposeuichallenge.data.ChipData
-import com.example.jetpackcomposeuichallenge.data.PeopleAvailableProvider
+import com.example.jetpackcomposeuichallenge.data.local.ChipData
+import com.example.jetpackcomposeuichallenge.data.local.PeopleAvailableProvider
 import com.example.jetpackcomposeuichallenge.items.ChipItem
 import com.example.jetpackcomposeuichallenge.items.PeopleItem
 import com.example.jetpackcomposeuichallenge.notification.NotificationScreen
