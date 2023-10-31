@@ -20,9 +20,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.JetpackComposeUIChallengeTheme
-import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
-import com.example.jetpackcomposeuichallenge.components.ContinueButtonComponent
-import com.example.jetpackcomposeuichallenge.components.SelectRolesBoxComponent
+import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon
+import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
+import com.example.jetpackcomposeuichallenge.presentation.components.SelectRolesBoxComponent
 
 @Composable
 fun DoYouKnowScreen(

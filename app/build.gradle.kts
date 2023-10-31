@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.example.jetpackcomposeuichallenge"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.jetpackcomposeuichallenge"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -69,6 +69,7 @@ dependencies {
     implementation ("androidx.compose.material:material-icons-extended")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation("androidx.paging:paging-compose-android:3.3.0-alpha02")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -83,7 +84,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:0.12.0")
 
     // Coil Library Dependencies
-    implementation ("io.coil-kt:coil-compose:1.3.2")
+    implementation ("io.coil-kt:coil-compose:2.4.0")
     implementation ("io.coil-kt:coil-svg:1.3.2")
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
     implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
@@ -115,7 +116,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-    val pagingVersion = "3.3.0-alpha02"
+    val pagingVersion = "3.1.0-alpha03"
     implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion")
 
 }

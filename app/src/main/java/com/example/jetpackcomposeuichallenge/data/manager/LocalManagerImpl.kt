@@ -18,14 +18,11 @@ class LocalManagerImpl(private val context: Context) : LocalManager {
             settings[PreferenceKeys.APP_ENTRY] = true
         }
     }
-
     override suspend fun readAppEntry(): Flow<Boolean> {
         return context.datastore.data.map {preferences ->
             preferences[PreferenceKeys.APP_ENTRY]?:false
         }
-
     }
-
 }
 
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = USER_SETTINGS)

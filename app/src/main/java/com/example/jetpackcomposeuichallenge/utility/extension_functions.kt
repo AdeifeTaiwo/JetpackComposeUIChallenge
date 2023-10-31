@@ -13,8 +13,7 @@ fun LazyListLayoutInfo.normalizedItemPosition(key: Any): Float =
             val center = (viewportEndOffset + viewportStartOffset)
             (it.offset.toFloat() - center) / center
 
-        }
-        ?: 0F
+        } ?: 0F
 
 fun NavHostController.navigateSingleTopTo(route: String) =
     this.navigate(route) {

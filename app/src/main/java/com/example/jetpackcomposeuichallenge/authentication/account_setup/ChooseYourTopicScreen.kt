@@ -25,11 +25,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.components.AppSearchBar
-import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
-import com.example.jetpackcomposeuichallenge.components.ContinueButtonComponent
+import com.example.jetpackcomposeuichallenge.presentation.components.AppSearchBar
+import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon
+import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
 import com.example.jetpackcomposeuichallenge.data.local.NewsTopicsProvider
-import com.example.jetpackcomposeuichallenge.items.ChooseYourTopicsItem
+import com.example.jetpackcomposeuichallenge.presentation.list_items.ChooseYourTopicsItem
 
 @Composable
 fun ChooseYourTopicScreen(modifier: Modifier= Modifier){

@@ -23,7 +23,7 @@ import androidx.core.view.WindowCompat
 import com.example.compose.JetpackComposeUIChallengeTheme
 import com.example.compose.faintRed
 import com.example.jetpackcomposeuichallenge.data.local.BottomMenuProvider
-import com.example.jetpackcomposeuichallenge.home.NewsHomeScreen
+import com.example.jetpackcomposeuichallenge.presentation.home.NewsHomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 @AndroidEntryPoint

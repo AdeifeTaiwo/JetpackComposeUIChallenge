@@ -64,8 +64,8 @@ import com.example.compose.faintRed
 import com.example.compose.lightRed
 import com.example.compose.transparentGrey
 import com.example.jetpackcomposeuichallenge.R
-import com.example.jetpackcomposeuichallenge.components.ContinueButtonComponent
-import com.example.jetpackcomposeuichallenge.components.SignInLogoWithText
+import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
+import com.example.jetpackcomposeuichallenge.presentation.components.SignInLogoWithText
 import kotlinx.coroutines.launch
 
 @OptIn(

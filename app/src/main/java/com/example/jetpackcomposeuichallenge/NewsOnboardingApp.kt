@@ -21,9 +21,7 @@ import com.example.jetpackcomposeuichallenge.authentication.account_setup.Select
 import com.example.jetpackcomposeuichallenge.utility.NewsRoute
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopNoPopUpToHome
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopTo
-import com.example.jetpackcomposeuichallenge.onboarding.ui.OnBoardingScreen
-import com.example.jetpackcomposeuichallenge.onboarding.ui.OnBoardingViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.jetpackcomposeuichallenge.presentation.onBoarding.OnBoardingScreen
 
 @Composable
 fun NewsOnboardingApp(modifier: Modifier = Modifier) {

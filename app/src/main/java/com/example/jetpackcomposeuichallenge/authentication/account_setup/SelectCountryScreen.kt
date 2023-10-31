@@ -24,11 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.compose.faintRed
 import com.example.compose.transparentGrey
-import com.example.jetpackcomposeuichallenge.components.AppSearchBar
-import com.example.jetpackcomposeuichallenge.components.BackButtonWithMenuIcon
-import com.example.jetpackcomposeuichallenge.components.ContinueButtonComponent
+import com.example.jetpackcomposeuichallenge.presentation.components.AppSearchBar
+import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon
+import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
 import com.example.jetpackcomposeuichallenge.data.local.CountryProvider
-import com.example.jetpackcomposeuichallenge.items.CountryItem
+import com.example.jetpackcomposeuichallenge.presentation.list_items.CountryItem
 
 @Composable
 fun SelectCountryScreen(
