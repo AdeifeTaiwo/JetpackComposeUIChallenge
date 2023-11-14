@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -16,7 +17,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.example.jetpackcomposeuichallenge.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -74,11 +75,11 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.4")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.4")
 
     implementation("com.airbnb.android:lottie-compose:5.2.0")
     implementation("com.google.accompanist:accompanist-pager:0.12.0")
@@ -100,6 +101,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    kaptAndroidTest("com.google.dagger:hilt-compiler:2.44")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
 
     //VIEWMODEL
     val lifecycleVersion = "2.6.2"
@@ -118,5 +121,37 @@ dependencies {
 
     val pagingVersion = "3.1.0-alpha03"
     implementation ("androidx.paging:paging-runtime-ktx:$pagingVersion")
+
+
+    //Mockito, Coroutine Testing
+    val mockitoCoreVersion = "3.3.3"
+    testImplementation ("org.mockito:mockito-core:$mockitoCoreVersion")
+    val archCoreTest = "2.1.0"
+    testImplementation ("androidx.arch.core:core-testing:$archCoreTest")
+    val coroutinesTest = "1.6.4"
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest")
+    val mockWebserverVersion = "4.7.2"
+    testImplementation ("com.squareup.okhttp3:mockwebserver:$mockWebserverVersion")
+
+
+    //Room
+    val room_version = "2.6.0"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:$room_version")
+
+    // optional - Paging 3 Integration
+    implementation("androidx.room:room-paging:$room_version")
+
+
+
 
 }

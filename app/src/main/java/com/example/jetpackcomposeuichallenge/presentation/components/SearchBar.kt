@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -33,6 +35,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose.transparentGrey
@@ -40,7 +44,12 @@ import com.example.jetpackcomposeuichallenge.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppSearchBar(modifier: Modifier = Modifier) {
+fun AppSearchBar(
+    modifier: Modifier = Modifier,
+    text: String,
+    onSearch: () -> Unit,
+    onValueChange: (String) -> Unit,
+) {
     var searchText by remember { mutableStateOf("") }
 
     Row(
@@ -48,42 +57,59 @@ fun AppSearchBar(modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .height(46.dp)
-            .background(
-                transparentGrey,
-                CircleShape
-            ),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        TextField(
-            textStyle = TextStyle(fontSize = 14.sp),
-            value = searchText,
-            onValueChange = { searchText = it },
-            modifier = Modifier.fillMaxHeight(),
-            maxLines = 1,
-            placeholder = { Text(text = "search here...", style = TextStyle(fontSize = 14.sp)) },
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            ),
-            trailingIcon = {
-                Icon(
-                    modifier = Modifier
-                        .padding(start = 16.dp)
-                        .clickable {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .height(46.dp)
+                .background(
+                    transparentGrey,
+                    CircleShape
+                ),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            TextField(
+                textStyle = TextStyle(fontSize = 14.sp),
+                value = text,
+                onValueChange = { onValueChange(it) },
+                modifier = Modifier.fillMaxHeight(),
+                maxLines = 1,
+                placeholder = {
+                    Text(
+                        text = "search here...",
+                        style = TextStyle(fontSize = 14.sp)
+                    )
+                },
+                colors = TextFieldDefaults.textFieldColors(
+                    containerColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
+                ),
+                trailingIcon = {
+                    Icon(
+                        modifier = Modifier
+                            .padding(start = 16.dp)
+                            .clickable {
 
-                        },
-                    imageVector = Icons.Default.Search, contentDescription = "Search button"
-                )
-            }
-        )
-    }
+                            },
+                        imageVector = Icons.Default.Search, contentDescription = "Search button"
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text,
+                    imeAction = ImeAction.Search
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+
+                    },
+                    onSearch = {
+                        onSearch()
+                    }
+                ),
+            )
+        }
 
         Spacer(modifier = Modifier.width(16.dp))
         ThreeLinesIcon()

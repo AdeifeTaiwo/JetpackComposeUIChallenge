@@ -52,12 +52,12 @@ import com.example.jetpackcomposeuichallenge.R
 @Composable
 fun HomeScreen(
     articles: LazyPagingItems<Article>,
-    navigate: (String) -> Unit,
     newsLazyListState: LazyListState,
-    isExpanded : Boolean
+    isExpanded: Boolean,
+    goToNewsDetailsScreen: (Article) -> Unit,
 ) {
 
-    var heightWhenExpanded =  300.dp * articles.itemCount
+    var heightWhenExpanded = 300.dp * articles.itemCount
 
     val titles by remember {
         derivedStateOf {
@@ -72,7 +72,7 @@ fun HomeScreen(
     }
 
 
-    if(!isExpanded) heightWhenExpanded = 300.dp
+    if (!isExpanded) heightWhenExpanded = 300.dp
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -98,10 +98,14 @@ fun HomeScreen(
 
         NewsList(
             modifier =
-            Modifier.padding(horizontal = 10.dp)
+            Modifier
+                .padding(horizontal = 10.dp)
                 .height(heightWhenExpanded),
-            news = articles, onClick = {}, newsLazyListState,
-            isExpanded = isExpanded)
+            news = articles,
+            newsLazyListState = newsLazyListState,
+            isExpanded = isExpanded,
+            onClick = goToNewsDetailsScreen
+        )
 
 
     }

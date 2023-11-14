@@ -9,15 +9,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.jetpackcomposeuichallenge.presentation.components.BottomMenu
 import com.example.jetpackcomposeuichallenge.data.local.BottomMenuProvider
+import com.example.jetpackcomposeuichallenge.domain.model.Article
 import com.example.jetpackcomposeuichallenge.utility.NewsRoute
 import com.example.jetpackcomposeuichallenge.utility.navigateSingleTopTo
 import com.example.jetpackcomposeuichallenge.presentation.home.featurednews.FeaturedNews
 import com.example.jetpackcomposeuichallenge.presentation.home.NewsHomeScreen
+import com.example.jetpackcomposeuichallenge.presentation.newsdetails.NewsDetailsScreen
 import com.example.jetpackcomposeuichallenge.presentation.notification.NotificationScreen
 import com.example.jetpackcomposeuichallenge.presentation.searchnews.SearchNewsScreen
 
@@ -64,8 +68,10 @@ fun MyAppNavHost(
                 name = "Taiwo",
                 modifier = modifier,
                 onClickSeeAllFeaturedNews = { navController.navigateSingleTopTo(it) },
-                onNotificationIconClicked = { navController.navigateSingleTopTo(NewsRoute.NOTIFICATION)}
-            )
+                onNotificationIconClicked = { navController.navigateSingleTopTo(NewsRoute.NOTIFICATION) }
+            ) {
+                navigateToDetailsScreen(navController, it)
+            }
         }
 
         composable(route = NewsRoute.SEARCH) {
@@ -95,6 +101,21 @@ fun MyAppNavHost(
             SearchNewsScreen(modifier = modifier)
         }
 
-    }
+        composable(
+            route = NewsRoute.NEWS_DETAILS_SCREEN,
+        ) { currentBackStackEntry ->
+            val article = navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
+            NewsDetailsScreen(modifier = modifier, news = article) {
 
+            }
+        }
+
+    }
 }
+
+private fun navigateToDetailsScreen(navController: NavHostController, article: Article) {
+    navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
+    navController.navigate(NewsRoute.NEWS_DETAILS_SCREEN)
+}
+
+

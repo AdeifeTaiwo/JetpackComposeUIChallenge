@@ -31,7 +31,10 @@ import com.example.compose.faintRed
 fun BackButtonWithBookMarkIcon(
     modifier: Modifier = Modifier,
     headerText: String,
-    menuIcon: ImageVector? = null
+    menuIcon: ImageVector? = null,
+    onShareClick: () -> Unit,
+    onBrowsingClick: () -> Unit,
+    onBookmarkClick: () -> Unit
 ) {
 
     Row(
@@ -57,9 +60,15 @@ fun BackButtonWithBookMarkIcon(
                 )
             )
         }
-        RoundedIconWithLightRedBackground(imageVector = Icons.Default.Share) {}
-        RoundedIconWithLightRedBackground(imageVector = Icons.Default.BookmarkBorder) {}
-        RoundedIconWithLightRedBackground(imageVector = Icons.Default.MoreVert) {}
+        RoundedIconWithLightRedBackground(imageVector = Icons.Default.Share) {
+            onShareClick()
+        }
+        RoundedIconWithLightRedBackground(imageVector = Icons.Default.BookmarkBorder) {
+            onBookmarkClick()
+        }
+        RoundedIconWithLightRedBackground(imageVector = Icons.Default.MoreVert) {
+            onBrowsingClick()
+        }
 
     }
 
@@ -68,11 +77,15 @@ fun BackButtonWithBookMarkIcon(
 @Preview
 @Composable
 
-fun PreviewBackArrowWithBookMark(){
+fun PreviewBackArrowWithBookMark() {
     JetpackComposeUIChallengeTheme {
         Surface(modifier = Modifier.background(Color.White)) {
 
-            BackButtonWithBookMarkIcon(headerText = "")
+            BackButtonWithBookMarkIcon(headerText = "",
+                onBookmarkClick = {},
+                onBrowsingClick = {},
+                onShareClick = {}
+            )
         }
     }
 }

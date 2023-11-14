@@ -23,8 +23,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,6 +42,7 @@ import com.example.jetpackcomposeuichallenge.domain.model.Article
 import com.example.jetpackcomposeuichallenge.presentation.common.HomeScreen
 import com.example.jetpackcomposeuichallenge.presentation.list_items.ChipItem
 import com.example.jetpackcomposeuichallenge.presentation.list_items.FeaturedRowItem
+import com.example.jetpackcomposeuichallenge.presentation.search.SearchEvent
 
 @Composable
 fun NewsHomeScreen(
@@ -47,14 +50,16 @@ fun NewsHomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     name: String,
     onClickSeeAllFeaturedNews: (String) -> Unit,
-    onNotificationIconClicked: () -> Unit
+    onNotificationIconClicked: () -> Unit,
+    navigateToDetailsScreen: (Article) -> Unit
 ) {
 
     val newsLazyListState = rememberLazyListState()
     val newsColumnLazyListState = rememberLazyListState()
     val allNews: List<News> = LocalNewsDataProvider.getAllNews()
-    val news: List<Article>
     val article = viewModel.news.collectAsLazyPagingItems()
+
+    val uiState = viewModel.uiState.value
 
 
     LaunchedEffect(key1 = true, block = {
@@ -63,7 +68,7 @@ fun NewsHomeScreen(
         }
     })
 
-    var expanded by remember { mutableStateOf(false) }
+    var expanded by rememberSaveable{ mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -76,7 +81,12 @@ fun NewsHomeScreen(
             onNotificationIconClicked()
         }
         Spacer(modifier = Modifier.height(0.dp))
-        AppSearchBar()
+        AppSearchBar(
+            text = uiState.searchQuery,
+            onSearch = { viewModel.onEvent(SearchEvent.SearchNews) },
+            onValueChange = { viewModel.onEvent(SearchEvent.UpdateSearchQuery(it)) }
+        )
+
         Spacer(modifier = Modifier.height(16.dp))
         FeaturedRow {
             onClickSeeAllFeaturedNews(it)
@@ -84,6 +94,7 @@ fun NewsHomeScreen(
         Spacer(modifier = Modifier.height(16.dp))
         LazyRow(
             modifier = Modifier
+                .testTag("FeaturedRowTag")
                 .padding(8.dp)
                 .fillMaxWidth(), state = newsLazyListState
         ) {
@@ -100,7 +111,10 @@ fun NewsHomeScreen(
         }
         Spacer(modifier = Modifier.height(16.dp))
 
-        FeaturedRow(item = "News") {
+        FeaturedRow(
+            modifier = Modifier.testTag("SeeNewsTag"),
+            item = "News"
+        ) {
             expanded = !expanded
         }
 
@@ -109,27 +123,28 @@ fun NewsHomeScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
 
-        AnimatedVisibility(
-            visible = !expanded,
-            enter = fadeIn(initialAlpha = 0.5f),
-            exit = fadeOut(targetAlpha = 1.0f)
-        ) {
-            HomeScreen(articles = article,
-                navigate = {},
-                newsColumnLazyListState,
-                isExpanded = expanded
-            )
-
-        }
-        val heightWhenExpanded = if (expanded) 200.dp * (allNews.size - 1) else 0.dp
+//        AnimatedVisibility(
+//            visible = !expanded,
+//            enter = fadeIn(initialAlpha = 0.5f),
+//            exit = fadeOut(targetAlpha = 1.0f)
+//        ) {
+//            HomeScreen(
+//                articles = article,
+//                newsColumnLazyListState,
+//                isExpanded = expanded,
+//                goToNewsDetailsScreen = navigateToDetailsScreen
+//            )
+//        }
+        val heightWhenExpanded = 200.dp * (allNews.size - 1)
         Column(modifier = Modifier.height(heightWhenExpanded)) {
 
             HomeScreen(
                 articles = article,
-                navigate = {},
                 newsColumnLazyListState,
-                isExpanded = expanded
-            )
+                isExpanded = expanded,
+            ) {
+                navigateToDetailsScreen(it)
+            }
 
         }
     }
@@ -141,9 +156,12 @@ fun NewsHomeScreen(
 @Preview(showBackground = true)
 @Composable
 
-fun PreviewHomeScreen(){
+fun PreviewHomeScreen() {
     JetpackComposeUIChallengeTheme {
-        NewsHomeScreen(name = "Taiwo", onClickSeeAllFeaturedNews = {}) {
+        NewsHomeScreen(
+            name = "Taiwo",
+            onClickSeeAllFeaturedNews = {},
+            onNotificationIconClicked = {}) {
 
         }
     }

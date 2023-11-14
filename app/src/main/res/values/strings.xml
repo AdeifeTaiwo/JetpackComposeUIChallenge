@@ -2,4 +2,7 @@
     <string name="app_name">JetpackComposeUIChallenge</string>
     <string name="title_activity_onboarding">OnboardingActivity</string>
     <string name="title_activity_on_boarding">OnBoardingActivity</string>
+
+    <string name="lorem_ipsum_1"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Congue nisi vitae suscipit tellus mauris a diam. Quis vel eros donec ac odio tempor orci dapibus. \n\nAmet volutpat consequat mauris nunc congue nisi vitae suscipit. Elementum nibh tellus molestie nunc non blandit massa. Purus semper eget duis at. Nunc mattis enim ut tellus elementum. Leo duis ut diam quam nulla porttitor massa id. Praesent tristique magna sit amet. Aliquam id diam maecenas ultricies mi eget mauris pharetra et. Lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor. Tortor condimentum lacinia quis vel eros donec ac odio. Hac habitasse platea dictumst quisque sagittis purus sit amet volutpat. \n\nSemper auctor neque vitae tempus quam pellentesque nec nam aliquam.Et leo duis ut diam quam. Ipsum consequat nisl vel pretium lectus quam.</string>
+    <string name="lorem_ipsum_2"> Lorem ipsum dolor sit amet, consectetur adipiscing elit,  </string>
 </resources>

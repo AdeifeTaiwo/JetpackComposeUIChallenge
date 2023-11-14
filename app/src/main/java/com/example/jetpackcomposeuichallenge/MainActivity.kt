@@ -82,6 +82,8 @@ fun EmptyComingSoon(modifier: Modifier) {
 @Composable
 fun NewsAppPreview() {
     JetpackComposeUIChallengeTheme {
-        NewsHomeScreen(name = "Taiwo", onClickSeeAllFeaturedNews = {}) {}
+        NewsHomeScreen(name = "Taiwo",
+            onNotificationIconClicked = {},
+            onClickSeeAllFeaturedNews = {}) {}
     }
 }

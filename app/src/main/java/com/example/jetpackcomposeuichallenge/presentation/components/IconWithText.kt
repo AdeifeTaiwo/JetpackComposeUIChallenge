@@ -28,7 +28,7 @@ import com.example.compose.lightRed
 
 
 @Composable
-fun IconWithText(icon: ImageVector, selectedIcon: ImageVector, text: String) {
+fun IconWithText(icon: ImageVector, selectedIcon: ImageVector, text: String, onClick: (() -> Unit)? = null) {
 
     var toggled by remember { mutableStateOf(false) }
 

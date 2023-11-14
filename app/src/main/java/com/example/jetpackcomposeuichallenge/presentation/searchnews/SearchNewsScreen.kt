@@ -70,7 +70,10 @@ fun SearchNewsScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(0.dp))
 
-        AppSearchBar()
+        AppSearchBar(text = "",
+            onValueChange = {},
+            onSearch = {}
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
 

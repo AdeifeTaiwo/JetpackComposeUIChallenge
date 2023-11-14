@@ -1,5 +1,7 @@
 package com.example.jetpackcomposeuichallenge.presentation.newsdetails
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -22,6 +25,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Message
+import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -33,7 +37,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -43,6 +49,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.example.compose.JetpackComposeUIChallengeTheme
 import com.example.compose.faintRed
 import com.example.jetpackcomposeuichallenge.R
@@ -55,17 +63,42 @@ import com.example.jetpackcomposeuichallenge.presentation.components.OvalProfile
 
 @Composable
 fun NewsDetailsScreen(
+    modifier: Modifier = Modifier,
     news: Article? = null,
-    modifier: Modifier = Modifier
+    onNavigateUp: () -> Unit
+
 ) {
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp),
+            .verticalScroll(rememberScrollState())
+            .padding(horizontal = 8.dp),
         verticalArrangement = Arrangement.Top
     ) {
         Spacer(modifier = Modifier.height(20.dp))
-        BackButtonWithBookMarkIcon(headerText = "")
+        BackButtonWithBookMarkIcon(headerText = "",
+            onBookmarkClick = {
+
+            },
+            onBrowsingClick = {
+                Intent(Intent.ACTION_VIEW).also {
+                    it.data = Uri.parse(news?.url)
+                    if (it.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(it)
+                    }
+                }
+            },
+            onShareClick = {
+                Intent(Intent.ACTION_SEND).also {
+                    it.putExtra(Intent.EXTRA_TEXT, news?.url)
+                    it.type = "text/plain"
+                    if (it.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(it)
+                    }
+                }
+            }
+        )
 
         Box(
             modifier = modifier
@@ -73,18 +106,19 @@ fun NewsDetailsScreen(
                     //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
                 }
                 .fillMaxWidth()
-                .height(300.dp - 20.dp)
+                .height(400.dp - 20.dp)
                 .padding(bottom = 16.dp, top = 16.dp)
                 .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
         ) {
 
-            Image(
+            AsyncImage(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RoundedCornerShape(16.dp)),
-                painter = painterResource(id = R.drawable.joe_biden),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
+                    .clip(RoundedCornerShape(8.dp))
+                    .fillMaxHeight(1.0f)
+                    .fillMaxWidth(),
+                contentScale = ContentScale.Crop,
+                model = ImageRequest.Builder(context = context).data(news?.urlToImage).build(),
+                contentDescription = "News Image"
             )
         }
 
@@ -92,7 +126,7 @@ fun NewsDetailsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),
-            text = "Joe Biden At Press Conference In USA Announces New Political Party",
+            text = news?.title?:"",
             overflow = TextOverflow.Ellipsis,
             maxLines = 3,
             style = TextStyle(
@@ -128,14 +162,18 @@ fun NewsDetailsScreen(
         }
 
         Spacer(modifier = Modifier.height(15.dp))
-        Row(verticalAlignment = Alignment.CenterVertically,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween) {
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
 
             Row(verticalAlignment = Alignment.CenterVertically) {
                 OvalProfileImage(size = 42.dp, drawableResource = R.drawable.bg_7, description = "")
                 Column(
-                    modifier = Modifier.height(46.dp).padding(start = 4.dp),
+                    modifier = Modifier
+                        .height(46.dp)
+                        .padding(start = 4.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalAlignment = Alignment.Start
                 ) {
@@ -144,7 +182,6 @@ fun NewsDetailsScreen(
 
                 }
             }
-
             val hasFollowed = false
             Box(
                 modifier = Modifier
@@ -166,10 +203,89 @@ fun NewsDetailsScreen(
                     style = TextStyle(color = if (hasFollowed) faintRed else Color.White)
                 )
             }
+
+        }
+
+        Spacer(modifier = Modifier.height(15.dp))
+        Text(
+            modifier = Modifier.padding(horizontal = 4.dp),
+            text = news?.content?: stringResource(id = R.string.lorem_ipsum_1),
+            style = TextStyle(
+                fontSize = 14.sp,
+                fontWeight = FontWeight.W400,
+                lineHeight = 20.sp
+            )
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        //second image
+        Box(
+            modifier = modifier
+                .graphicsLayer {
+                    //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
+                }
+                .fillMaxWidth()
+                .height(250.dp)
+                .padding(bottom = 16.dp, top = 16.dp)
+                .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
+        ) {
+
+            Image(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(16.dp)),
+                painter = painterResource(id = R.drawable.bg_1),
+                contentDescription = "",
+                contentScale = ContentScale.Crop
+            )
+        }
+
+        Spacer(modifier = Modifier.height(15.dp))
+        Text(
+            modifier = Modifier.padding(horizontal = 4.dp),
+            text = stringResource(id = R.string.lorem_ipsum_2),
+            style = TextStyle(
+                fontSize = 14.sp,
+                fontWeight = FontWeight.W400,
+                lineHeight = 20.sp
+            )
+        )
+
+        Spacer(modifier = Modifier.height(15.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                modifier = Modifier.padding(horizontal = 4.dp),
+                text = "Is this really helpful?",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.W400,
+                    lineHeight = 20.sp
+                )
+            )
+
+            Row {
+                IconWithText(
+                    icon = Icons.Default.ThumbUp,
+                    selectedIcon = Icons.Default.ThumbUp,
+                    text = "381.4k"
+                )
+
+                IconWithText(
+                    icon = Icons.Default.ThumbDown,
+                    selectedIcon = Icons.Default.ThumbDown,
+                    text = "18.4k"
+                )
+            }
         }
 
     }
 }
+
+
 
 
 @Preview(showBackground = true)
@@ -177,6 +293,8 @@ fun NewsDetailsScreen(
 
 fun PreviewNewsDetailScreen() {
     JetpackComposeUIChallengeTheme {
-        NewsDetailsScreen()
+        NewsDetailsScreen() {
+
+        }
     }
 }

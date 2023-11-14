@@ -16,4 +16,5 @@ object NewsRoute {
     const val FEATURED_NEWS = "Featured"
     const val NEWS = "News"
     const val SELECT_YOUR_TOPICS_SCREEN: String = "Select Your Topics"
+    const val NEWS_DETAILS_SCREEN = "NewsHomeDetails"
 }

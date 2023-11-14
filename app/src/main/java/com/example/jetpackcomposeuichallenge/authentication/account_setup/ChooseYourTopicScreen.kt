@@ -46,7 +46,9 @@ fun ChooseYourTopicScreen(modifier: Modifier= Modifier){
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        AppSearchBar()
+        AppSearchBar(text = "",
+            onValueChange = {},
+            onSearch = {})
 
         Spacer(modifier = Modifier.height(20.dp))
 

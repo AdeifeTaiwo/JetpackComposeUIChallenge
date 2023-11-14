@@ -18,19 +18,19 @@ import com.example.compose.faintRed
 
 @Composable
 fun FeaturedRow(
-    item: String = "Featured",
     modifier: Modifier = Modifier,
+    item: String = "Featured",
     onClickSeeAllText: (String) -> Unit
 ) {
     Row(
-        modifier = modifier
+        modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = modifier,
+            modifier = Modifier,
             text = item,
             style = TextStyle(
                 color = Color.Black,

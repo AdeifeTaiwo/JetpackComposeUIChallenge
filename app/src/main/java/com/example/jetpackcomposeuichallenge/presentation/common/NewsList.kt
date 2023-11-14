@@ -24,16 +24,19 @@ fun NewsList(
     isExpanded: Boolean
 ) {
     val handlePagingResult = handlePagingResult(article = news)
-    if(handlePagingResult){
-        LazyColumn( modifier = Modifier.fillMaxSize(),
+    if (handlePagingResult) {
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(all = 4.dp)
-        ){
+        ) {
 
-            val itemCount = if(!isExpanded) 1 else news.itemCount
-            items(count = itemCount){
-                news[it]?.let{
-                    NewsListItem(news = it, isSelected = true, state = newsLazyListState ) {
+            val itemCount = if (!isExpanded) 1 else news.itemCount
+            items(count = itemCount) {
+                news[it]?.let {
+                    NewsListItem(news = it, isSelected = true, state = newsLazyListState) {
+                        onClick(it)
+
                     }
                 }
             }
@@ -42,7 +45,7 @@ fun NewsList(
 }
 
 @Composable
-fun handlePagingResult(article:LazyPagingItems<Article>): Boolean{
+fun handlePagingResult(article: LazyPagingItems<Article>): Boolean {
 
     val loadState = article.loadState
     val error = when {
@@ -52,13 +55,13 @@ fun handlePagingResult(article:LazyPagingItems<Article>): Boolean{
         else -> null
     }
 
-    return when  {
+    return when {
         loadState.refresh is LoadState.Loading -> {
             ShimmerEffect()
             false
         }
 
-        error !=null ->{
+        error != null -> {
             EmptyScreen()
             false
         }
@@ -69,9 +72,9 @@ fun handlePagingResult(article:LazyPagingItems<Article>): Boolean{
 }
 
 @Composable
-private fun ShimmerEffect(){
+private fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        repeat(10){
+        repeat(10) {
             NewsCardShimmerEffect(
                 modifier = Modifier.padding(horizontal = 8.dp)
             )

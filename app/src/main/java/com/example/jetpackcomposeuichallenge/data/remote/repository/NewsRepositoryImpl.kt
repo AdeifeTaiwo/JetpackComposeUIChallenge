@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.jetpackcomposeuichallenge.data.remote.NewsApi
 import com.example.jetpackcomposeuichallenge.data.remote.paging.NewsPagingSource
+import com.example.jetpackcomposeuichallenge.data.remote.paging.SearchNewsPagingSource
 import com.example.jetpackcomposeuichallenge.domain.model.Article
 import com.example.jetpackcomposeuichallenge.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
@@ -19,6 +20,19 @@ class NewsRepositoryImpl(
                 NewsPagingSource(
                     newsApi = newsApi,
                     sources = sources.joinToString(separator = ",")
+                )
+            }
+        ).flow
+    }
+
+    override fun searchNew(searchQuery: String, sources: List<String>): Flow<PagingData<Article>> {
+        return  Pager(
+            config = PagingConfig(pageSize = 10),
+            pagingSourceFactory = {
+                SearchNewsPagingSource(
+                    newsApi = newsApi,
+                    sources = sources.joinToString(separator = ","),
+                    searchQuery = searchQuery
                 )
             }
         ).flow

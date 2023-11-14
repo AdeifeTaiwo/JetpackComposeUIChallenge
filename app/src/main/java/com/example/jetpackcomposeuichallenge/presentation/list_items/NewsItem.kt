@@ -3,6 +3,7 @@ package com.example.jetpackcomposeuichallenge.presentation.list_items
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -54,7 +55,7 @@ fun NewsListItem(
     news: Article,
     isSelected: Boolean,
     state: LazyListState,
-    navigateToDetails: () -> Unit,
+    navigateToDetails: (Article) -> Unit,
 ) {
 
     Card(
@@ -62,6 +63,9 @@ fun NewsListItem(
             .graphicsLayer {
             }
             .height(200.dp)
+            .clickable {
+                navigateToDetails(news)
+            }
             .fillMaxWidth()
             .background(color = Color.Transparent)
             .padding(horizontal = 4.dp, vertical = 4.dp)

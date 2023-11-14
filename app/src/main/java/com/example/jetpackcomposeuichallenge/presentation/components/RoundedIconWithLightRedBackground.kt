@@ -36,7 +36,7 @@ fun RoundedIconWithLightRedBackground(size: Dp = 40.dp, imageVector: ImageVector
                 .size(32.dp),
             imageVector = imageVector,
             tint = faintRed,
-            contentDescription = ""
+            contentDescription = "Notification Icon"
         )
     }
 }

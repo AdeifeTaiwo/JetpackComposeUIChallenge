@@ -60,7 +60,10 @@ fun SelectCountryScreen(
 
                 Spacer(modifier = Modifier.height(20.dp))
 
-                AppSearchBar()
+                AppSearchBar(text = "",
+                    onValueChange = {},
+                    onSearch = {}
+                )
 
 
                 items.forEachIndexed { index, item ->
