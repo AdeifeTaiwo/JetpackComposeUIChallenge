@@ -105,8 +105,10 @@ fun MyAppNavHost(
             route = NewsRoute.NEWS_DETAILS_SCREEN,
         ) { currentBackStackEntry ->
             val article = navController.previousBackStackEntry?.savedStateHandle?.get<Article?>("article")
-            NewsDetailsScreen(modifier = modifier, news = article) {
-
+            NewsDetailsScreen(
+                modifier = modifier,
+                news = article) {
+                navController.navigateSingleTopTo(NewsRoute.HOME)
             }
         }
 
@@ -117,5 +119,6 @@ private fun navigateToDetailsScreen(navController: NavHostController, article: A
     navController.currentBackStackEntry?.savedStateHandle?.set("article", article)
     navController.navigate(NewsRoute.NEWS_DETAILS_SCREEN)
 }
+
 
 

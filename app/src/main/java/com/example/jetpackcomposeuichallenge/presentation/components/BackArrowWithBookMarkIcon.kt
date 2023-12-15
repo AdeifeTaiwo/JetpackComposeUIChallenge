@@ -1,6 +1,7 @@
 package com.example.jetpackcomposeuichallenge.presentation.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Icon
@@ -34,7 +36,8 @@ fun BackButtonWithBookMarkIcon(
     menuIcon: ImageVector? = null,
     onShareClick: () -> Unit,
     onBrowsingClick: () -> Unit,
-    onBookmarkClick: () -> Unit
+    onBookmarkClick: () -> Unit,
+    onBackPressed: () -> Unit
 ) {
 
     Row(
@@ -46,6 +49,9 @@ fun BackButtonWithBookMarkIcon(
 
         Row(modifier = modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
             Icon(
+                modifier = Modifier.clickable {
+                    onBackPressed()
+                },
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = "",
                 tint = faintRed
@@ -66,7 +72,7 @@ fun BackButtonWithBookMarkIcon(
         RoundedIconWithLightRedBackground(imageVector = Icons.Default.BookmarkBorder) {
             onBookmarkClick()
         }
-        RoundedIconWithLightRedBackground(imageVector = Icons.Default.MoreVert) {
+        RoundedIconWithLightRedBackground(imageVector = Icons.Default.Language) {
             onBrowsingClick()
         }
 
@@ -84,7 +90,8 @@ fun PreviewBackArrowWithBookMark() {
             BackButtonWithBookMarkIcon(headerText = "",
                 onBookmarkClick = {},
                 onBrowsingClick = {},
-                onShareClick = {}
+                onShareClick = {},
+                onBackPressed = {}
             )
         }
     }

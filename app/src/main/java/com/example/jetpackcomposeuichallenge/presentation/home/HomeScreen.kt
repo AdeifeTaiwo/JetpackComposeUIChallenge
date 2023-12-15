@@ -68,7 +68,7 @@ fun NewsHomeScreen(
         }
     })
 
-    var expanded by rememberSaveable{ mutableStateOf(false) }
+    var expanded by rememberSaveable{ mutableStateOf(true) }
 
     Column(
         modifier = modifier

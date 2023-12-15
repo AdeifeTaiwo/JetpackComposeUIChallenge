@@ -6,8 +6,7 @@ import com.example.jetpackcomposeuichallenge.domain.model.Article
 class SelectArticle(
   private val newsDao: NewsDao
 ) {
-
-    suspend operator fun invoke(url: String) {
+    operator fun invoke(url: String) {
      newsDao.getArticle(url)
     }
 }

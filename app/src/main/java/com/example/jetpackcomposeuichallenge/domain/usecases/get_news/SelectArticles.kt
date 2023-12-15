@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class SelectArticles(
     private val newsDao: NewsDao
 ) {
-    suspend operator fun invoke(): Flow<List<Article>> {
+    operator fun invoke(): Flow<List<Article>> {
         return newsDao.getArticles()
     }
 }

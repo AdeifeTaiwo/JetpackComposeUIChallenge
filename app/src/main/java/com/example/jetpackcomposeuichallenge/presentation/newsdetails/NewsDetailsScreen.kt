@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -69,197 +70,162 @@ fun NewsDetailsScreen(
 
 ) {
     val context = LocalContext.current
-    Column(
+    LazyColumn(
         modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .fillMaxHeight()
             .padding(horizontal = 8.dp),
-        verticalArrangement = Arrangement.Top
     ) {
-        Spacer(modifier = Modifier.height(20.dp))
-        BackButtonWithBookMarkIcon(headerText = "",
-            onBookmarkClick = {
+        item {
+            Spacer(modifier = Modifier.height(20.dp))
 
-            },
-            onBrowsingClick = {
-                Intent(Intent.ACTION_VIEW).also {
-                    it.data = Uri.parse(news?.url)
-                    if (it.resolveActivity(context.packageManager) != null) {
-                        context.startActivity(it)
+            BackButtonWithBookMarkIcon(headerText = "",
+                onBookmarkClick = {
+
+                },
+                onBrowsingClick = {
+                    Intent(Intent.ACTION_VIEW).also {
+                        it.data = Uri.parse(news?.url)
+                        if (it.resolveActivity(context.packageManager) != null) {
+                            context.startActivity(it)
+                        }
                     }
-                }
-            },
-            onShareClick = {
-                Intent(Intent.ACTION_SEND).also {
-                    it.putExtra(Intent.EXTRA_TEXT, news?.url)
-                    it.type = "text/plain"
-                    if (it.resolveActivity(context.packageManager) != null) {
-                        context.startActivity(it)
+                },
+                onShareClick = {
+                    Intent(Intent.ACTION_SEND).also {
+                        it.putExtra(Intent.EXTRA_TEXT, news?.url)
+                        it.type = "text/plain"
+                        if (it.resolveActivity(context.packageManager) != null) {
+                            context.startActivity(it)
+                        }
                     }
+                },
+                onBackPressed = {
+                    onNavigateUp()
                 }
-            }
-        )
-
-        Box(
-            modifier = modifier
-                .graphicsLayer {
-                    //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
-                }
-                .fillMaxWidth()
-                .height(400.dp - 20.dp)
-                .padding(bottom = 16.dp, top = 16.dp)
-                .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
-        ) {
-
-            AsyncImage(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(8.dp))
-                    .fillMaxHeight(1.0f)
-                    .fillMaxWidth(),
-                contentScale = ContentScale.Crop,
-                model = ImageRequest.Builder(context = context).data(news?.urlToImage).build(),
-                contentDescription = "News Image"
-            )
-        }
-
-        Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp),
-            text = news?.title?:"",
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 3,
-            style = TextStyle(
-                fontWeight = FontWeight.W400,
-                fontSize = 16.sp,
-                fontStyle = FontStyle.Normal
-            )
-        )
-
-        Row(
-            modifier = Modifier.padding(vertical = 10.dp),
-            horizontalArrangement = Arrangement.spacedBy(2.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-
-            FaintRedOutlinedRoundButton(height = 28.dp, buttonText = "Politics", textSize = 9.sp)
-            IconWithText(
-                icon = Icons.Default.VisibilityOff,
-                selectedIcon = Icons.Default.Visibility,
-                text = "638.6k"
-            )
-            IconWithText(
-                icon = Icons.Default.ThumbUp,
-                selectedIcon = Icons.Default.ThumbUp,
-                text = "361.4k"
             )
 
-            IconWithText(
-                icon = Icons.Default.FavoriteBorder,
-                selectedIcon = Icons.Default.Message,
-                text = "31.4k"
-            )
-        }
-
-        Spacer(modifier = Modifier.height(15.dp))
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                OvalProfileImage(size = 42.dp, drawableResource = R.drawable.bg_7, description = "")
-                Column(
-                    modifier = Modifier
-                        .height(46.dp)
-                        .padding(start = 4.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalAlignment = Alignment.Start
-                ) {
-                    Text(text = "Bbc News", fontSize = 14.sp, style = TextStyle(color = faintRed))
-                    Text(text = "2 days ago", fontSize = 11.sp)
-
-                }
-            }
-            val hasFollowed = false
             Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(32.dp))
-                    .height(40.dp)
-                    .padding(start = 15.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
-                    .background(
-                        color = if (hasFollowed) Color.White else faintRed,
-                        shape = RoundedCornerShape(32.dp)
-                    )
-                    .border(1.dp, color = faintRed, shape = RoundedCornerShape(32.dp))
-                    .clickable { },
-                contentAlignment = Alignment.CenterStart
-            )
-            {
-                Text(
-                    modifier = Modifier.padding(start = 15.dp, end = 16.dp),
-                    text = if (hasFollowed) "Following" else "Follow",
-                    style = TextStyle(color = if (hasFollowed) faintRed else Color.White)
+                modifier = modifier
+                    .graphicsLayer {
+                        //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
+                    }
+                    .fillMaxWidth()
+                    .height(400.dp - 20.dp)
+                    .padding(bottom = 16.dp, top = 16.dp)
+                    .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
+            ) {
+
+                AsyncImage(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(8.dp))
+                        .fillMaxHeight(1.0f)
+                        .fillMaxWidth(),
+                    contentScale = ContentScale.Crop,
+                    model = ImageRequest.Builder(context = context).data(news?.urlToImage).build(),
+                    contentDescription = "News Image"
                 )
             }
 
-        }
-
-        Spacer(modifier = Modifier.height(15.dp))
-        Text(
-            modifier = Modifier.padding(horizontal = 4.dp),
-            text = news?.content?: stringResource(id = R.string.lorem_ipsum_1),
-            style = TextStyle(
-                fontSize = 14.sp,
-                fontWeight = FontWeight.W400,
-                lineHeight = 20.sp
-            )
-        )
-
-        Spacer(modifier = Modifier.height(15.dp))
-
-        //second image
-        Box(
-            modifier = modifier
-                .graphicsLayer {
-                    //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
-                }
-                .fillMaxWidth()
-                .height(250.dp)
-                .padding(bottom = 16.dp, top = 16.dp)
-                .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
-        ) {
-
-            Image(
+            Text(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .clip(RoundedCornerShape(16.dp)),
-                painter = painterResource(id = R.drawable.bg_1),
-                contentDescription = "",
-                contentScale = ContentScale.Crop
+                    .fillMaxWidth()
+                    .padding(top = 16.dp),
+                text = news?.title ?: "",
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 3,
+                style = TextStyle(
+                    fontWeight = FontWeight.W400,
+                    fontSize = 16.sp,
+                    fontStyle = FontStyle.Normal
+                )
             )
-        }
 
-        Spacer(modifier = Modifier.height(15.dp))
-        Text(
-            modifier = Modifier.padding(horizontal = 4.dp),
-            text = stringResource(id = R.string.lorem_ipsum_2),
-            style = TextStyle(
-                fontSize = 14.sp,
-                fontWeight = FontWeight.W400,
-                lineHeight = 20.sp
-            )
-        )
+            Row(
+                modifier = Modifier.padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(2.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
 
-        Spacer(modifier = Modifier.height(15.dp))
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+                FaintRedOutlinedRoundButton(
+                    height = 28.dp,
+                    buttonText = "Politics",
+                    textSize = 9.sp
+                )
+                IconWithText(
+                    icon = Icons.Default.VisibilityOff,
+                    selectedIcon = Icons.Default.Visibility,
+                    text = "638.6k"
+                )
+                IconWithText(
+                    icon = Icons.Default.ThumbUp,
+                    selectedIcon = Icons.Default.ThumbUp,
+                    text = "361.4k"
+                )
+
+                IconWithText(
+                    icon = Icons.Default.FavoriteBorder,
+                    selectedIcon = Icons.Default.Message,
+                    text = "31.4k"
+                )
+            }
+
+            Spacer(modifier = Modifier.height(15.dp))
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    OvalProfileImage(
+                        size = 42.dp,
+                        drawableResource = R.drawable.bg_7,
+                        description = ""
+                    )
+                    Column(
+                        modifier = Modifier
+                            .height(46.dp)
+                            .padding(start = 4.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Text(
+                            text = "Bbc News",
+                            fontSize = 14.sp,
+                            style = TextStyle(color = faintRed)
+                        )
+                        Text(text = "2 days ago", fontSize = 11.sp)
+
+                    }
+                }
+                val hasFollowed = false
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(32.dp))
+                        .height(40.dp)
+                        .padding(start = 15.dp, top = 8.dp, bottom = 8.dp, end = 16.dp)
+                        .background(
+                            color = if (hasFollowed) Color.White else faintRed,
+                            shape = RoundedCornerShape(32.dp)
+                        )
+                        .border(1.dp, color = faintRed, shape = RoundedCornerShape(32.dp))
+                        .clickable { },
+                    contentAlignment = Alignment.CenterStart
+                )
+                {
+                    Text(
+                        modifier = Modifier.padding(start = 15.dp, end = 16.dp),
+                        text = if (hasFollowed) "Following" else "Follow",
+                        style = TextStyle(color = if (hasFollowed) faintRed else Color.White)
+                    )
+                }
+
+            }
+
+            Spacer(modifier = Modifier.height(15.dp))
             Text(
                 modifier = Modifier.padding(horizontal = 4.dp),
-                text = "Is this really helpful?",
+                text = news?.content ?: stringResource(id = R.string.lorem_ipsum_1),
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight.W400,
@@ -267,21 +233,72 @@ fun NewsDetailsScreen(
                 )
             )
 
-            Row {
-                IconWithText(
-                    icon = Icons.Default.ThumbUp,
-                    selectedIcon = Icons.Default.ThumbUp,
-                    text = "381.4k"
-                )
+            Spacer(modifier = Modifier.height(15.dp))
 
-                IconWithText(
-                    icon = Icons.Default.ThumbDown,
-                    selectedIcon = Icons.Default.ThumbDown,
-                    text = "18.4k"
+            //second image
+            Box(
+                modifier = modifier
+                    .graphicsLayer {
+                        //alpha = state.layoutInfo.normalizedItemPosition(news.id).absoluteValue
+                    }
+                    .fillMaxWidth()
+                    .height(250.dp)
+                    .padding(bottom = 16.dp, top = 16.dp)
+                    .background(color = Color.Transparent, shape = RoundedCornerShape(8.dp))
+            ) {
+
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(RoundedCornerShape(16.dp)),
+                    painter = painterResource(id = R.drawable.bg_1),
+                    contentDescription = "",
+                    contentScale = ContentScale.Crop
                 )
             }
-        }
 
+            Spacer(modifier = Modifier.height(15.dp))
+            Text(
+                modifier = Modifier.padding(horizontal = 4.dp),
+                text = stringResource(id = R.string.lorem_ipsum_1),
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.W400,
+                    lineHeight = 20.sp
+                )
+            )
+
+            Spacer(modifier = Modifier.height(15.dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 16.dp),
+                    text = "Is this really helpful?",
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.W400,
+                        lineHeight = 20.sp
+                    )
+                )
+
+                Row {
+                    IconWithText(
+                        icon = Icons.Default.ThumbUp,
+                        selectedIcon = Icons.Default.ThumbUp,
+                        text = "381.4k"
+                    )
+
+                    IconWithText(
+                        icon = Icons.Default.ThumbDown,
+                        selectedIcon = Icons.Default.ThumbDown,
+                        text = "18.4k"
+                    )
+                }
+            }
+
+        }
     }
 }
 
