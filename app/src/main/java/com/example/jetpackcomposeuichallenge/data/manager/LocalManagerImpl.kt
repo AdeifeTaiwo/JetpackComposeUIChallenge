@@ -26,7 +26,7 @@ class LocalManagerImpl(private val context: Context) : LocalManager {
 }
 
 private val Context.datastore: DataStore<Preferences> by preferencesDataStore(name = USER_SETTINGS)
-
+//two types of datastore,
 private object PreferenceKeys{
     val APP_ENTRY = booleanPreferencesKey(name = Constants.APP_ENTRY)
 }

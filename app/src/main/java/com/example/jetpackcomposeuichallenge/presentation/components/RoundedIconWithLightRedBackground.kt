@@ -14,8 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.compose.faintRed
-import com.example.compose.lightRed
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.lightRed
 
 @Composable
 fun RoundedIconWithLightRedBackground(size: Dp = 40.dp, imageVector: ImageVector, onIconClicked: () -> Unit) {

@@ -20,6 +20,7 @@ class OnBoardingViewModel@Inject constructor(
         }
     }
 
+    //suspend function use viewModelScope
    private fun saveAppEntry(){
        viewModelScope.launch {
            appEntryUseCases.saveAppEntry()

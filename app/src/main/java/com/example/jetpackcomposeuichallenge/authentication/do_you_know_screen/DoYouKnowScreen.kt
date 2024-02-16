@@ -19,7 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
 import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon
 import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
 import com.example.jetpackcomposeuichallenge.presentation.components.SelectRolesBoxComponent

@@ -1,6 +1,5 @@
 package com.example.jetpackcomposeuichallenge
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -17,16 +16,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.compose.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
 import com.example.jetpackcomposeuichallenge.domain.usecases.app_entry.AppEntryUseCases
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,6 +37,8 @@ class OnBoardingActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             JetpackComposeUIChallengeTheme {
+
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier
@@ -60,10 +57,10 @@ class OnBoardingActivity : ComponentActivity() {
                         }
                     })
 
-                    if (shouldShowOnBoarding) {
-                        NewsApp()
-                    } else
+                    if (true) {
                         NewsOnboardingApp()
+                    } else
+                        NewsApp()
                 }
             }
         }

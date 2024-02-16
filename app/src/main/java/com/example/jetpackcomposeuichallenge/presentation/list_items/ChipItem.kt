@@ -21,7 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
-import com.example.compose.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
 
 @Composable
 fun ChipItem(chips: List<String>, modifier: Modifier = Modifier) {

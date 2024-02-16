@@ -36,7 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.compose.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
 import com.example.jetpackcomposeuichallenge.EmptyComingSoon
 import com.example.jetpackcomposeuichallenge.presentation.components.AppSearchBar
 import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon

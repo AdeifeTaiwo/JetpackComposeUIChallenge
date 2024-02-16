@@ -28,8 +28,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.compose.faintRed
-import com.example.compose.transparentGrey
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.transparentGrey
 import com.example.jetpackcomposeuichallenge.R
 
 @Composable
@@ -37,7 +37,7 @@ fun SignInLogoWithText(modifier: Modifier = Modifier, logo: Int, logoName: Strin
 
     Card(
         modifier = modifier
-            .graphicsLayer {}
+            .graphicsLayer {  }
             .height(70.dp)
             .fillMaxWidth()
             .background(color = Color.Transparent)

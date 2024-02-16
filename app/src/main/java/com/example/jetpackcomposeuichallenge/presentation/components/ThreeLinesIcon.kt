@@ -16,8 +16,8 @@ import coil.ImageLoader
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import coil.decode.SvgDecoder
-import com.example.compose.faintRed
-import com.example.compose.lightRed
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.lightRed
 import com.example.jetpackcomposeuichallenge.R
 
 @OptIn(ExperimentalCoilApi::class)

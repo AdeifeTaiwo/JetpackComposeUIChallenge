@@ -60,9 +60,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.compose.faintRed
-import com.example.compose.lightRed
-import com.example.compose.transparentGrey
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.lightRed
+import com.example.jetpackcomposeuichallenge.ui.theme.transparentGrey
 import com.example.jetpackcomposeuichallenge.R
 import com.example.jetpackcomposeuichallenge.presentation.components.ContinueButtonComponent
 import com.example.jetpackcomposeuichallenge.presentation.components.SignInLogoWithText

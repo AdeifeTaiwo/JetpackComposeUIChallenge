@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
-import com.example.compose.JetpackComposeUIChallengeTheme
-import com.example.compose.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
 import com.example.jetpackcomposeuichallenge.data.local.BottomMenuProvider
 import com.example.jetpackcomposeuichallenge.presentation.home.NewsHomeScreen
 import dagger.hilt.android.AndroidEntryPoint

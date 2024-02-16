@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Composable
@@ -26,7 +28,7 @@ fun NewsList(
     val handlePagingResult = handlePagingResult(article = news)
     if (handlePagingResult) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth().wrapContentHeight(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             contentPadding = PaddingValues(all = 4.dp)
         ) {
@@ -34,9 +36,12 @@ fun NewsList(
             val itemCount = if (!isExpanded) 1 else news.itemCount
             items(count = itemCount) {
                 news[it]?.let {
-                    NewsListItem(news = it, isSelected = true, state = newsLazyListState) {
+                    NewsListItem(
+                        news = it,
+                        isSelected = true,
+                        state = newsLazyListState
+                    ) {
                         onClick(it)
-
                     }
                 }
             }
@@ -62,7 +67,7 @@ fun handlePagingResult(article: LazyPagingItems<Article>): Boolean {
         }
 
         error != null -> {
-            EmptyScreen()
+            EmptyScreen(error = error)
             false
         }
 

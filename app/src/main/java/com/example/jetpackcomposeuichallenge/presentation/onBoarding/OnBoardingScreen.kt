@@ -48,9 +48,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.compose.JetpackComposeUIChallengeTheme
-import com.example.compose.faintRed
-import com.example.compose.transparentGrey
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.transparentGrey
 import com.example.jetpackcomposeuichallenge.data.local.OnBoardingDataProvider
 import kotlinx.coroutines.delay
 
@@ -84,7 +84,7 @@ fun OnBoardingPager(
     modifier: Modifier = Modifier,
     navigateToChooseRolesScreen: (OnBoardingEvent) -> Unit
 ) {
-    val viewModel : OnBoardingViewModel = hiltViewModel()
+    val viewModel: OnBoardingViewModel = hiltViewModel()
 
     Box(
         modifier = modifier
@@ -94,8 +94,10 @@ fun OnBoardingPager(
             .padding(0.dp)
     ) {
         HorizontalPager(
+            modifier = Modifier.align(Alignment.CenterStart),
             state = pagerState,
-            key = null)
+            key = null
+        )
         {
 
             val pageOffset = (pagerState.currentPage - it) * pagerState.currentPageOffsetFraction
@@ -215,7 +217,7 @@ fun OnBoardingPager(
                     }
                     .padding(start = 32.dp, bottom = 32.dp, end = 32.dp),
                     onClick = {
-                        if (pagerState.currentPage == item.size-1) {
+                        if (pagerState.currentPage == item.size - 1) {
                             viewModel.onEvent(OnBoardingEvent.SaveAppEntry)
                             navigateToChooseRolesScreen(OnBoardingEvent.SaveAppEntry)
                         } else {
@@ -237,7 +239,11 @@ fun OnBoardingPager(
 
 
 @Composable
-fun PagerIndicator(size: Int, currentPage: Int, modifier: Modifier) {
+fun PagerIndicator(
+    size: Int,
+    currentPage: Int,
+    modifier: Modifier
+) {
     Row(
         modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically

@@ -1,7 +1,6 @@
 package com.example.jetpackcomposeuichallenge.presentation.list_items
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +30,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
@@ -39,13 +37,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.paging.compose.LazyPagingItems
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.compose.transparentGrey
+import com.example.jetpackcomposeuichallenge.ui.theme.transparentGrey
 import com.example.jetpackcomposeuichallenge.presentation.components.FaintRedOutlinedRoundButton
 import com.example.jetpackcomposeuichallenge.presentation.components.OvalProfileImage
-import com.example.jetpackcomposeuichallenge.data.local.News
 import com.example.jetpackcomposeuichallenge.R
 import com.example.jetpackcomposeuichallenge.domain.model.Article
 import com.example.jetpackcomposeuichallenge.presentation.components.IconWithText

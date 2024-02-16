@@ -16,15 +16,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Message
 import androidx.compose.material.icons.filled.ThumbDown
 import androidx.compose.material.icons.filled.ThumbUp
@@ -42,22 +37,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.compose.JetpackComposeUIChallengeTheme
-import com.example.compose.faintRed
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.faintRed
 import com.example.jetpackcomposeuichallenge.R
 import com.example.jetpackcomposeuichallenge.domain.model.Article
 import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithBookMarkIcon
-import com.example.jetpackcomposeuichallenge.presentation.components.BackButtonWithMenuIcon
 import com.example.jetpackcomposeuichallenge.presentation.components.FaintRedOutlinedRoundButton
 import com.example.jetpackcomposeuichallenge.presentation.components.IconWithText
 import com.example.jetpackcomposeuichallenge.presentation.components.OvalProfileImage
@@ -79,9 +71,8 @@ fun NewsDetailsScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
             BackButtonWithBookMarkIcon(headerText = "",
-                onBookmarkClick = {
+                onBookmarkClick = {},
 
-                },
                 onBrowsingClick = {
                     Intent(Intent.ACTION_VIEW).also {
                         it.data = Uri.parse(news?.url)

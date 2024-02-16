@@ -1,5 +1,6 @@
 package com.example.jetpackcomposeuichallenge.presentation.common
 
+import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -107,6 +108,7 @@ fun parseErrorMessage(error: LoadState.Error?): String {
 
 
 @Preview(showBackground = true)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun EmptyScreenPreview(){
     EmptyContent(alphaAnimation = 0.3f

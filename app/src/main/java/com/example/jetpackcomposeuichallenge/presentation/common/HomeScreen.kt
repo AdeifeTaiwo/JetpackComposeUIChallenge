@@ -1,8 +1,8 @@
 package com.example.jetpackcomposeuichallenge.presentation.common
 
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -37,16 +35,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.paging.compose.LazyPagingItems
-import com.example.compose.JetpackComposeUIChallengeTheme
-import com.example.compose.transparentGrey
+import com.example.jetpackcomposeuichallenge.ui.theme.JetpackComposeUIChallengeTheme
+import com.example.jetpackcomposeuichallenge.ui.theme.transparentGrey
 import com.example.jetpackcomposeuichallenge.domain.model.Article
-import com.example.jetpackcomposeuichallenge.R
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -81,6 +77,7 @@ fun HomeScreen(
             .statusBarsPadding()
     ) {
 
+        //status
         Spacer(modifier = Modifier.height(10.dp))
 
         Text(
@@ -121,6 +118,8 @@ fun SearchBar2(
     onValueChange: (String) -> Unit,
     onSearch: () -> Unit
 ) {
+
+    //alternative way of doing it;
     val interactionSource = remember {
         MutableInteractionSource()
     }
@@ -200,7 +199,7 @@ fun Modifier.searchBarBorder() = composed {
 }
 
 @Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_NO)
 @Composable
 
 fun PreviewSearchBar2() {
